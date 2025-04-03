@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            position: absolute;
+            transition: all 0.3s ease;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            font-size: 22px;
+        }
+        .no {
+            background-color: #FF0000;
+            color: white;
+            font-size: 22px;
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Marry Me? 💍</h1>
+        <div class="buttons">
+            <button class="yes" onclick="yesClicked()">Yes ❤️</button>
+            <button class="no" onmouseover="moveNoButton()">No 😢</button>
+        </div>
+    </div>
+
+    <audio id="song" src="https://www.myinstants.com/media/sounds/anime-wow-sound-effect.mp3"></audio>
+    
+    <script>
+        function yesClicked() {
+            document.getElementById('song').play();
+            alert("Yay! You said Yes! 💖 I love you so much!");
+            createHearts();
+        }
+        
+        function moveNoButton() {
+            let noButton = document.querySelector('.no');
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
